@@ -299,6 +299,14 @@ export default function App() {
           <div className="nav-contact-mobile">
             <Link href="tel:+923097227807" className="nav-phone">📞 +92 309 7227807</Link>
             <span className="nav-location">📍 Sector I-8, Islamabad</span>
+            <a
+              href="https://abdul-manan-jcc9.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="nav-creator-link"
+            >
+              Created by Abdul Manan <Arrow />
+            </a>
           </div>
         </nav>
         <Link href="#membership" className="button button-accent header-cta">
@@ -644,7 +652,21 @@ export default function App() {
             <div><span className="footer-label">VISIT</span><p>Sector I-8 Markaz<br />I-8 Islamabad, Pakistan</p><p>Mon–Fri: 24 hours<br />Sat–Sun: 24 hours</p></div>
             <div><span className="footer-label">CONTACT</span><Link href="tel:+923097227807">+92 309 7227807</Link><Link href="https://wa.me/923097227807" target="_blank" rel="noopener noreferrer">WhatsApp: +92 309 7227807</Link><Link href="mailto:hello@ironvault.fit">hello@ironvault.fit</Link><div className="footer-socials">{["IG", "FB", "TK", "YT"].map((x) => <Link href="#contact" key={x}>{x}</Link>)}</div></div>
           </div>
-          <div className="footer-bottom"><span>© 2026 IRONVAULT FITNESS. ALL RIGHTS RESERVED.</span><span>I-8 ISLAMABAD · PAKISTAN</span></div>
+          <div className="footer-bottom">
+            <span>© 2026 IRONVAULT FITNESS. ALL RIGHTS RESERVED.</span>
+            <span className="creator-credit">
+              CREATED BY{" "}
+              <a
+                href="https://abdul-manan-jcc9.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="creator-link"
+              >
+                ABDUL MANAN <Arrow />
+              </a>
+            </span>
+            <span>I-8 ISLAMABAD · PAKISTAN</span>
+          </div>
         </div>
       </footer>
 
