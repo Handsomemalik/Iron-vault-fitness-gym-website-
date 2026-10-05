@@ -1,4 +1,4 @@
-import { createElement, useEffect, useState, type ReactNode } from "react";
+import { createElement, useEffect, useState, type CSSProperties, type ReactNode } from "react";
 
 const img = (id: string, width = 1400) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=88`;
@@ -456,7 +456,7 @@ export default function App() {
         <div className="container app-grid">
           <div className="app-copy reveal"><div className="eyebrow">IRONVAULT APP</div><Title className="section-title">YOUR PROGRESS.<br /><span>IN YOUR POCKET.</span></Title><p>Training plans, live performance data, class booking and your coach—connected in one seamless experience.</p><div className="app-features"><span>WORKOUT TRACKING</span><span>CLASS BOOKING</span><span>NUTRITION</span><span>COACH CHAT</span></div><Link href="#contact" className="button button-accent">GET THE APP <Arrow /></Link></div>
           <div className="phone-stage reveal">
-            <div className="phone phone-back"><div className="phone-screen"><span className="phone-label">THIS WEEK</span><strong>4/5</strong><small>WORKOUTS COMPLETE</small><div className="mini-bars">{[40, 78, 56, 90, 68, 82, 46].map((n, i) => <i key={i} style={{ "--bar": `${n}%` } as React.CSSProperties} />)}</div></div></div>
+            <div className="phone phone-back"><div className="phone-screen"><span className="phone-label">THIS WEEK</span><strong>4/5</strong><small>WORKOUTS COMPLETE</small><div className="mini-bars">{[40, 78, 56, 90, 68, 82, 46].map((n, i) => <i key={i} style={{ "--bar": `${n}%` } as CSSProperties} />)}</div></div></div>
             <div className="phone phone-front"><div className="phone-screen"><div className="phone-brand">IV</div><span className="phone-label">GOOD MORNING, ALEX</span><Title as="h3">TODAY’S SESSION</Title><div className="workout-card"><span>STRENGTH · 60 MIN</span><strong>LOWER BODY<br />POWER</strong><i>START →</i></div><div className="phone-progress"><span>WEEKLY PROGRESS</span><strong>84%</strong></div><div className="progress-track"><i /></div></div></div>
           </div>
         </div>
