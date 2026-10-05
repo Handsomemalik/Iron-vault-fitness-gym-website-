@@ -137,13 +137,65 @@ const plans = [
   },
 ];
 
-const schedule = [
-  ["06:00", "HIIT", "Maya Chen", "45 min", "Advanced"],
-  ["08:00", "Strength", "Alex Morgan", "60 min", "All levels"],
-  ["12:30", "Boxing", "Daniel Carter", "50 min", "Intermediate"],
-  ["17:30", "Functional Training", "Maya Chen", "45 min", "All levels"],
-  ["18:30", "Yoga Mobility", "Sophia Williams", "60 min", "All levels"],
-];
+export type ClassItem = {
+  id: string;
+  time: string;
+  name: string;
+  trainer: string;
+  duration: string;
+  difficulty: "All Levels" | "Intermediate" | "Advanced";
+  category: "Strength" | "HIIT" | "Combat" | "Functional" | "Mobility";
+  spots: number;
+};
+
+const days = ["MON", "TUE", "WED", "THU", "FRI", "SAT"] as const;
+type DayType = typeof days[number];
+
+const categories = ["ALL", "STRENGTH", "HIIT", "COMBAT", "FUNCTIONAL", "MOBILITY"] as const;
+
+const weeklySchedule: Record<DayType, ClassItem[]> = {
+  MON: [
+    { id: "mon-1", time: "06:00 AM", name: "HIIT Conditioning", trainer: "Maya Chen", duration: "45 min", difficulty: "All Levels", category: "HIIT", spots: 4 },
+    { id: "mon-2", time: "08:00 AM", name: "Barbell Strength Lab", trainer: "Alex Morgan", duration: "60 min", difficulty: "Intermediate", category: "Strength", spots: 2 },
+    { id: "mon-3", time: "12:30 PM", name: "Power Boxing & Heavy Bag", trainer: "Daniel Carter", duration: "50 min", difficulty: "All Levels", category: "Combat", spots: 5 },
+    { id: "mon-4", time: "05:30 PM", name: "Functional Athlete WOD", trainer: "Maya Chen", duration: "50 min", difficulty: "Advanced", category: "Functional", spots: 3 },
+    { id: "mon-5", time: "07:00 PM", name: "Deep Stretch & Mobility", trainer: "Sophia Williams", duration: "60 min", difficulty: "All Levels", category: "Mobility", spots: 8 },
+  ],
+  TUE: [
+    { id: "tue-1", time: "06:00 AM", name: "HIIT Sprint & Core", trainer: "Maya Chen", duration: "45 min", difficulty: "Advanced", category: "HIIT", spots: 3 },
+    { id: "tue-2", time: "08:00 AM", name: "Lower Body Hypertrophy", trainer: "Alex Morgan", duration: "60 min", difficulty: "All Levels", category: "Strength", spots: 5 },
+    { id: "tue-3", time: "12:30 PM", name: "Boxing Striking Drills", trainer: "Daniel Carter", duration: "50 min", difficulty: "Intermediate", category: "Combat", spots: 4 },
+    { id: "tue-4", time: "05:30 PM", name: "Functional Endurance", trainer: "Maya Chen", duration: "45 min", difficulty: "All Levels", category: "Functional", spots: 2 },
+    { id: "tue-5", time: "06:30 PM", name: "Vinyasa Flow Yoga", trainer: "Sophia Williams", duration: "60 min", difficulty: "All Levels", category: "Mobility", spots: 7 },
+  ],
+  WED: [
+    { id: "wed-1", time: "06:00 AM", name: "Kettlebell & Metabolic Burn", trainer: "Alex Morgan", duration: "45 min", difficulty: "All Levels", category: "HIIT", spots: 4 },
+    { id: "wed-2", time: "08:00 AM", name: "Deadlift & Pull Mechanics", trainer: "Alex Morgan", duration: "60 min", difficulty: "Advanced", category: "Strength", spots: 2 },
+    { id: "wed-3", time: "12:30 PM", name: "Core & Speed Agility", trainer: "Maya Chen", duration: "45 min", difficulty: "All Levels", category: "Functional", spots: 6 },
+    { id: "wed-4", time: "05:30 PM", name: "Muay Thai Fundamentals", trainer: "Daniel Carter", duration: "60 min", difficulty: "Intermediate", category: "Combat", spots: 3 },
+    { id: "wed-5", time: "07:00 PM", name: "Spine & Hip Restoration", trainer: "Sophia Williams", duration: "50 min", difficulty: "All Levels", category: "Mobility", spots: 9 },
+  ],
+  THU: [
+    { id: "thu-1", time: "06:00 AM", name: "Tabata Cardio Explosion", trainer: "Maya Chen", duration: "45 min", difficulty: "Advanced", category: "HIIT", spots: 4 },
+    { id: "thu-2", time: "08:00 AM", name: "Upper Body Hypertrophy", trainer: "Alex Morgan", duration: "60 min", difficulty: "All Levels", category: "Strength", spots: 6 },
+    { id: "thu-3", time: "12:30 PM", name: "Boxing Footwork & Sparring", trainer: "Daniel Carter", duration: "50 min", difficulty: "Advanced", category: "Combat", spots: 2 },
+    { id: "thu-4", time: "05:30 PM", name: "Hyrox Circuit Training", trainer: "Maya Chen", duration: "60 min", difficulty: "All Levels", category: "Functional", spots: 4 },
+    { id: "thu-5", time: "06:30 PM", name: "Athletic Yoga & Alignment", trainer: "Sophia Williams", duration: "60 min", difficulty: "All Levels", category: "Mobility", spots: 8 },
+  ],
+  FRI: [
+    { id: "fri-1", time: "06:00 AM", name: "Full Body Functional Blitz", trainer: "Maya Chen", duration: "50 min", difficulty: "All Levels", category: "Functional", spots: 5 },
+    { id: "fri-2", time: "08:00 AM", name: "Olympic Weightlifting Prep", trainer: "Alex Morgan", duration: "60 min", difficulty: "Intermediate", category: "Strength", spots: 3 },
+    { id: "fri-3", time: "12:30 PM", name: "Friday Fight Conditioning", trainer: "Daniel Carter", duration: "50 min", difficulty: "All Levels", category: "Combat", spots: 4 },
+    { id: "fri-4", time: "05:30 PM", name: "IronVault Beast Mode HIIT", trainer: "Maya Chen", duration: "45 min", difficulty: "Advanced", category: "HIIT", spots: 1 },
+    { id: "fri-5", time: "07:00 PM", name: "Weekend Eve Recovery Lab", trainer: "Sophia Williams", duration: "60 min", difficulty: "All Levels", category: "Mobility", spots: 10 },
+  ],
+  SAT: [
+    { id: "sat-1", time: "08:00 AM", name: "Saturday Team WOD", trainer: "Alex & Maya", duration: "75 min", difficulty: "All Levels", category: "Functional", spots: 6 },
+    { id: "sat-2", time: "10:00 AM", name: "Powerlifting Max Out", trainer: "Alex Morgan", duration: "60 min", difficulty: "Advanced", category: "Strength", spots: 3 },
+    { id: "sat-3", time: "11:30 AM", name: "Open Boxing Ring & Drills", trainer: "Daniel Carter", duration: "60 min", difficulty: "All Levels", category: "Combat", spots: 5 },
+    { id: "sat-4", time: "04:00 PM", name: "Sound Bath & Deep Stretch", trainer: "Sophia Williams", duration: "60 min", difficulty: "All Levels", category: "Mobility", spots: 12 },
+  ],
+};
 
 const faqs = [
   ["What membership should I choose?", "Basic is ideal for independent training, Pro adds full programming and classes, while Elite gives you the highest level of personal coaching and recovery support."],
@@ -162,6 +214,7 @@ const navItems = [
   { label: "Trainers", id: "trainers" },
   { label: "Membership", id: "membership" },
   { label: "Gallery", id: "gallery" },
+  { label: "Schedule", id: "schedule" },
   { label: "Contact", id: "contact" },
 ];
 
@@ -170,6 +223,12 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
   const [activeSection, setActiveSection] = useState("home");
+  const [activeDay, setActiveDay] = useState<DayType>("TUE");
+  const [activeCategory, setActiveCategory] = useState<string>("ALL");
+  const [selectedClass, setSelectedClass] = useState<ClassItem | null>(null);
+  const [bookingName, setBookingName] = useState("");
+  const [bookingPhone, setBookingPhone] = useState("");
+  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -419,17 +478,112 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section classes">
+      <section id="schedule" className="section classes">
+        <div id="classes" />
         <div className="container">
-          <div className="section-heading reveal"><div><div className="eyebrow">TODAY AT IRONVAULT</div><Title className="section-title">TRAIN <span>TOGETHER.</span></Title></div><div className="day-switch"><span>MON</span><span className="active">TUE</span><span>WED</span><span>THU</span><span>FRI</span></div></div>
-          <div className="schedule reveal">
-            {schedule.map(([time, name, trainer, duration, difficulty], index) => (
-              <div className="schedule-row" key={name}>
-                <span className="schedule-index">0{index + 1}</span><strong>{time}</strong><Title as="h3">{name}</Title><span>{trainer}</span><span>{duration}</span><span className="difficulty">{difficulty}</span><Link href="#contact" aria-label={`Book ${name}`}>+</Link>
-              </div>
-            ))}
+          <div className="section-heading reveal">
+            <div>
+              <div className="eyebrow">TODAY AT IRONVAULT</div>
+              <Title className="section-title">TRAIN <span>TOGETHER.</span></Title>
+            </div>
+            <div className="day-switch" role="tablist" aria-label="Class schedule day switcher">
+              {days.map((day) => (
+                <button
+                  key={day}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeDay === day}
+                  className={`day-btn ${activeDay === day ? "active" : ""}`}
+                  onClick={() => setActiveDay(day)}
+                >
+                  {day}
+                </button>
+              ))}
+            </div>
           </div>
-          <Link href="#contact" className="text-link schedule-link">VIEW FULL SCHEDULE <Arrow /></Link>
+
+          <div className="schedule-filters reveal">
+            <span className="filter-title">FOCUS:</span>
+            <div className="filter-pills">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  type="button"
+                  className={`filter-pill ${activeCategory === cat ? "active" : ""}`}
+                  onClick={() => setActiveCategory(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="schedule reveal">
+            {((weeklySchedule[activeDay] || []).filter((c) => activeCategory === "ALL" || c.category.toUpperCase() === activeCategory)).length > 0 ? (
+              (weeklySchedule[activeDay] || [])
+                .filter((c) => activeCategory === "ALL" || c.category.toUpperCase() === activeCategory)
+                .map((item, index) => (
+                  <article className="schedule-row" key={item.id}>
+                    <span className="schedule-index">0{index + 1}</span>
+                    <div className="schedule-time-block">
+                      <strong className="schedule-time">{item.time}</strong>
+                      <span className="schedule-duration">{item.duration}</span>
+                    </div>
+                    <div className="schedule-class-block">
+                      <div className="schedule-class-header">
+                        <Title as="h3">{item.name}</Title>
+                        <span className={`cat-badge cat-${item.category.toLowerCase()}`}>{item.category}</span>
+                      </div>
+                      <span className="schedule-coach">Coach {item.trainer}</span>
+                    </div>
+                    <div className="schedule-meta-block">
+                      <span className="difficulty">{item.difficulty}</span>
+                      <span className="spots-left">
+                        <i className="pulse-indicator" />
+                        {item.spots} {item.spots === 1 ? "spot" : "spots"} left
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      className="schedule-book-action"
+                      onClick={() => {
+                        setSelectedClass(item);
+                        setBookingSuccess(false);
+                      }}
+                      aria-label={`Book spot for ${item.name}`}
+                    >
+                      <span>BOOK</span>
+                      <Arrow />
+                    </button>
+                  </article>
+                ))
+            ) : (
+              <div className="schedule-empty-msg">
+                <p>No classes scheduled under <strong>{activeCategory}</strong> on <strong>{activeDay}</strong>.</p>
+                <button type="button" className="button button-accent" onClick={() => setActiveCategory("ALL")}>
+                  SHOW ALL {activeDay} CLASSES
+                </button>
+              </div>
+            )}
+          </div>
+
+          <div className="schedule-bottom-bar reveal">
+            <div className="schedule-guarantees">
+              <span>✓ All skill levels welcome</span>
+              <span>✓ Certified strength & conditioning coaches</span>
+              <span>✓ Towel & locker included</span>
+            </div>
+            <a
+              href={`https://wa.me/923097227807?text=${encodeURIComponent(
+                "Hi IronVault Fitness! I would like to inquire about joining today's group fitness classes."
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-link schedule-link"
+            >
+              CHAT WITH HEAD COACH ON WHATSAPP <Arrow />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -462,7 +616,7 @@ export default function App() {
         </div>
       </section>
 
-      <section className="section faq">
+      <section id="faq" className="section faq">
         <div className="container faq-grid">
           <div className="faq-heading reveal"><div className="eyebrow">NEED TO KNOW</div><Title className="section-title">FREQUENTLY<br /><span>ASKED.</span></Title><p>Still have questions? Our membership team is ready to help.</p><Link href="#contact" className="text-link">TALK TO OUR TEAM <Arrow /></Link></div>
           <div className="faq-list reveal">
@@ -485,14 +639,130 @@ export default function App() {
       <footer id="contact" className="footer">
         <div className="container">
           <div className="footer-grid">
-            <div><span className="footer-label">EXPLORE</span>{["Programs", "Trainers", "Membership", "Facilities"].map((x) => <Link href={`#${x.toLowerCase()}`} key={x}>{x}</Link>)}</div>
-            <div><span className="footer-label">SUPPORT</span>{["FAQ", "Privacy Policy", "Terms", "Contact"].map((x) => <Link href="#contact" key={x}>{x}</Link>)}</div>
+            <div><span className="footer-label">EXPLORE</span>{["Programs", "Trainers", "Membership", "Gallery", "Schedule"].map((x) => <Link href={`#${x.toLowerCase()}`} key={x}>{x}</Link>)}</div>
+            <div><span className="footer-label">SUPPORT</span>{["FAQ", "Privacy Policy", "Terms", "Contact"].map((x) => <Link href={x === "FAQ" ? "#faq" : "#contact"} key={x}>{x}</Link>)}</div>
             <div><span className="footer-label">VISIT</span><p>Sector I-8 Markaz<br />I-8 Islamabad, Pakistan</p><p>Mon–Fri: 24 hours<br />Sat–Sun: 24 hours</p></div>
             <div><span className="footer-label">CONTACT</span><Link href="tel:+923097227807">+92 309 7227807</Link><Link href="https://wa.me/923097227807" target="_blank" rel="noopener noreferrer">WhatsApp: +92 309 7227807</Link><Link href="mailto:hello@ironvault.fit">hello@ironvault.fit</Link><div className="footer-socials">{["IG", "FB", "TK", "YT"].map((x) => <Link href="#contact" key={x}>{x}</Link>)}</div></div>
           </div>
           <div className="footer-bottom"><span>© 2026 IRONVAULT FITNESS. ALL RIGHTS RESERVED.</span><span>I-8 ISLAMABAD · PAKISTAN</span></div>
         </div>
       </footer>
+
+      {selectedClass && (
+        <div
+          className="booking-modal-overlay"
+          onClick={() => {
+            setSelectedClass(null);
+            setBookingSuccess(false);
+          }}
+        >
+          <div
+            className="booking-modal"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Book Class Spot"
+          >
+            <button
+              type="button"
+              className="modal-close-btn"
+              onClick={() => {
+                setSelectedClass(null);
+                setBookingSuccess(false);
+              }}
+              aria-label="Close booking modal"
+            >
+              ✕
+            </button>
+
+            {bookingSuccess ? (
+              <div className="booking-success-view">
+                <div className="booking-success-badge">✓</div>
+                <Title as="h3" className="booking-modal-title">SPOT RESERVED!</Title>
+                <p className="booking-success-text">
+                  You are registered for <strong>{selectedClass.name}</strong> on <strong>{activeDay} at {selectedClass.time}</strong> with <strong>Coach {selectedClass.trainer}</strong>.
+                </p>
+                <div className="booking-details-box">
+                  <div><span>LOCATION</span><strong>Sector I-8 Markaz, Islamabad</strong></div>
+                  <div><span>DURATION</span><strong>{selectedClass.duration}</strong></div>
+                  <div><span>ARRIVAL</span><strong>Please arrive 10 min early</strong></div>
+                </div>
+                <button
+                  type="button"
+                  className="button button-accent modal-finish-btn"
+                  onClick={() => {
+                    setSelectedClass(null);
+                    setBookingSuccess(false);
+                    setBookingName("");
+                    setBookingPhone("");
+                  }}
+                >
+                  DONE
+                </button>
+              </div>
+            ) : (
+              <div className="booking-form-view">
+                <div className="eyebrow">INSTANT RESERVATION</div>
+                <Title as="h3" className="booking-modal-title">{selectedClass.name}</Title>
+                
+                <div className="booking-class-chips">
+                  <span className="chip-item">📅 {activeDay}</span>
+                  <span className="chip-item">⏰ {selectedClass.time}</span>
+                  <span className="chip-item">👤 Coach {selectedClass.trainer}</span>
+                  <span className="chip-item chip-accent">🔥 {selectedClass.spots} spots left</span>
+                </div>
+
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setBookingSuccess(true);
+                  }}
+                  className="booking-form"
+                >
+                  <div className="modal-field">
+                    <label htmlFor="member-name">YOUR FULL NAME</label>
+                    <input
+                      id="member-name"
+                      type="text"
+                      placeholder="e.g. Malik Khan"
+                      required
+                      value={bookingName}
+                      onChange={(e) => setBookingName(e.target.value)}
+                    />
+                  </div>
+                  <div className="modal-field">
+                    <label htmlFor="member-phone">WHATSAPP / PHONE NUMBER</label>
+                    <input
+                      id="member-phone"
+                      type="tel"
+                      placeholder="e.g. +92 309 7227807"
+                      required
+                      value={bookingPhone}
+                      onChange={(e) => setBookingPhone(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="modal-actions">
+                    <button type="submit" className="button button-accent modal-submit-btn">
+                      CONFIRM MY RESERVATION <Arrow />
+                    </button>
+                    <a
+                      href={`https://wa.me/923097227807?text=${encodeURIComponent(
+                        `Hi IronVault Fitness! I would like to reserve a spot for "${selectedClass.name}" on ${activeDay} at ${selectedClass.time} with Coach ${selectedClass.trainer}. Name: ${bookingName || "Member"}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="button button-outline modal-whatsapp-btn"
+                    >
+                      <span>BOOK DIRECT VIA WHATSAPP</span> <Arrow />
+                    </a>
+                  </div>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </main>
   );
 }
